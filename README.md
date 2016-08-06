@@ -7,4 +7,4 @@ To use, run in a terminal:
 ruby update_rspec_syntax.rb <filepath>
 ```
 
-**Note:** Use it at your own risk - it will overwrite the file. Always check your test works after running the script.
+**Note:** Use it at your own risk - it will overwrite the file. Always check your specs work after running the script.
