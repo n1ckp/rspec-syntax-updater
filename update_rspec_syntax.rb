@@ -12,10 +12,15 @@ def process_file(_filepath)
 
     if !match_parentheses
       _line.sub!(/lambda do/, 'expect {')
+      _line.sub!(/lambda {/, 'expect {')
       _line.sub!(/end.should_not ==/, '}.to_not eq')
+      _line.sub!(/}.should_not ==/, '}.to_not eq')
       _line.sub!(/end.should_not/, '}.to_not')
+      _line.sub!(/}.should_not/, '}.to_not')
       _line.sub!(/end.should ==/, '}.to eq')
+      _line.sub!(/}.should ==/, '}.to eq')
       _line.sub!(/end.should/, '}.to')
+      _line.sub!(/}.should/, '}.to')
       _line.sub!(/([^\s#].*)\.any_instance.stub/, 'allow_any_instance_of(\1).to receive')
       _line.sub!(/([^\s#].*)\.stub/, 'allow(\1).to receive')
       _line.sub!(/([^\s#].*)\.any_instance.should_receive/, 'expect_any_instance_of(\1).to receive')
@@ -68,7 +73,7 @@ def process_file(_filepath)
 end
 
 def process_directory(_directory_path)
-  Dir.glob("#{_directory_path}*.rb") do |rb_file|
+  Dir.glob("#{_directory_path}**/*.rb") do |rb_file|
     process_file(rb_file)
   end
 end
